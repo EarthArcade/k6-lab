@@ -10,10 +10,12 @@ const PARAMS = {
 };
 
 // The customer wants no pepperoni, and no knife to cut the pizza.
+// Fix: the API matches names case-sensitively, as listed by explore.js
+// ("Pepperoni", "Knife"), so the lowercase names excluded nothing.
 export default function () {
   const body = JSON.stringify({
-    excludedIngredients: ['pepperoni'],
-    excludedTools: ['knife'],
+    excludedIngredients: ['Pepperoni'],
+    excludedTools: ['Knife'],
   });
   const res = http.post(`${BASE_URL}/api/pizza`, body, PARAMS);
   check(res, {
